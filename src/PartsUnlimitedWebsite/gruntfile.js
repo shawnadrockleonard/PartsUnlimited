@@ -4,6 +4,7 @@
 This file in the main entry point for defining grunt tasks and using grunt plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x409
 */
+const sass = require('node-sass');
 module.exports = function (grunt) {
     var scriptsList = ["Scripts/*.js", "!Scripts/_references.js"];
 
@@ -23,28 +24,29 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                {
-                    expand: true,
-                    src: scriptsList,
-                    dest: "wwwroot"
-                },
-                {
-                    expand: true,
-                    src: ["Content/*.css"],
-                    dest: "wwwroot"
-                },
-                {
-                    expand: true,
-                    src: ["images/*"],
-                    dest: "wwwroot"
-                }
+                    {
+                        expand: true,
+                        src: scriptsList,
+                        dest: "wwwroot"
+                    },
+                    {
+                        expand: true,
+                        src: ["Content/*.css"],
+                        dest: "wwwroot"
+                    },
+                    {
+                        expand: true,
+                        src: ["images/*"],
+                        dest: "wwwroot"
+                    }
                 ]
             }
         },
 
         sass: {
             options: {
-                sourceMap: true
+                sourceMap: true,
+                implementation: sass
             },
             dist: {
                 files: [
