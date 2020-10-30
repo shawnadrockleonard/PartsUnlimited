@@ -4,6 +4,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,9 +28,10 @@ namespace PartsUnlimited
         public IConfiguration Configuration { get; }
         public IServiceCollection service { get; private set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            WebHostEnvironment = env;
+            Configuration = BuildConfiguration();
         }
 
         private IConfiguration BuildConfiguration()
@@ -45,7 +47,7 @@ namespace PartsUnlimited
             if (WebHostEnvironment.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets("AdminRole");
+                builder.AddUserSecrets(typeof(Startup).Assembly);
 
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
@@ -66,16 +68,17 @@ namespace PartsUnlimited
                 sqlConnectionString = "";
             }
 
-            services.AddTransient<IAppSettingEntity, AppSettingEntity>(config =>
+            services.AddTransient<IAppSettingEntity, ConfigAppSettingEntity>(config =>
             {
-                var connection = Configuration.Get<AppSettingEntity>();
+                var connection = Configuration.Get<ConfigAppSettingEntity>();
                 return connection;
             });
 
 
             // Add EF services to the services container
-            services.AddDbContext<PartsUnlimitedContext>();
+            // services.AddDbContext<PartsUnlimitedContext>();
 
+            services.AddDbContext<PartsUnlimitedContext>(options => options.UseSqlServer(sqlConnectionString));
 
             // Add Identity services to the services container
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -112,7 +115,8 @@ namespace PartsUnlimited
 
             services.AddScoped<IApplicationInsightsSettings>(p =>
             {
-                return new ConfigurationApplicationInsightsSettings(Configuration.GetSection(ConfigurationPath.Combine("Keys", "ApplicationInsights")));
+                var appInsightsSection = Configuration.GetSection(ConfigurationPath.Combine("ApplicationInsights"));
+                return new ConfigurationApplicationInsightsSettings(appInsightsSection);
             });
 
             services.AddApplicationInsightsTelemetry(Configuration);

@@ -2,10 +2,12 @@
 {
     public interface IAppSettingEntity
     {
-        KeysEntity Keys { get; set; }
+        ConfigKeysEntity Keys { get; set; }
 
-        AzureKeyValueEntity AzureKeyVault { get; set; }
+        ConfigApplicationInsights ApplicationInsights { get; set; }
 
-        ConnectionStringEntity ConnectionStrings { get; set; }
+        ConfigAzureKeyValueEntity AzureKeyVault { get; set; }
+
+        ConfigConnectionStringEntity ConnectionStrings { get; set; }
     }
 }

@@ -17,31 +17,10 @@ namespace PartsUnlimited.Models
         private IWebHostEnvironment WebHostEnvironment { get; }
         public IConfiguration Configuration { get; private set; }
 
-        public Startup(IWebHostEnvironment env)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             WebHostEnvironment = env;
-            Configuration = BuildConfiguration();
-        }
-
-        private IConfiguration BuildConfiguration()
-        {
-            //Below code demonstrates usage of multiple configuration sources. For instance a setting say 'setting1' is found in both the registered sources, 
-            //then the later source will win. By this way a Local config can be overridden by a different setting while deployed remotely.
-            var builder = new ConfigurationBuilder()
-              .AddJsonFile("config.json")
-              .AddJsonFile($"config.{WebHostEnvironment?.EnvironmentName}.json", optional: true)
-              .AddEnvironmentVariables()
-              .AddAzureKeyVaultIfAvailable();
-
-            if (WebHostEnvironment.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets("AdminRole");
-
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-            return builder.Build();
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -56,9 +35,9 @@ namespace PartsUnlimited.Models
                       });
             }
 
-            services.AddTransient<IAppSettingEntity, AppSettingEntity>(config =>
+            services.AddTransient<IAppSettingEntity, ConfigAppSettingEntity>(config =>
             {
-                var connection = Configuration.Get<AppSettingEntity>();
+                var connection = Configuration.Get<ConfigAppSettingEntity>();
                 return connection;
             });
 

@@ -3,10 +3,10 @@
 
 namespace PartsUnlimited.WebsiteConfiguration
 {
-    public interface IApplicationInsightsSettings
+    public interface ITelemetryChannel
     {
-        string InstrumentationKey { get; }
+        string EndpointAddress { get; }
 
-        ITelemetryChannel TelemetryChannel { get; }
+        bool? DeveloperMode { get; set; }
     }
 }

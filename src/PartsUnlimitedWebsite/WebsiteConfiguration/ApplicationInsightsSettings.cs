@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.Extensions.Configuration;
+using PartsUnlimited.Models;
 
 namespace PartsUnlimited.WebsiteConfiguration
 {
@@ -10,8 +11,11 @@ namespace PartsUnlimited.WebsiteConfiguration
         public ConfigurationApplicationInsightsSettings(IConfiguration config)
         {
             InstrumentationKey = config[nameof(InstrumentationKey)];
+            TelemetryChannel = new ConfigurationApplicationInsightsTelemetryChannel(config);
         }
 
         public string InstrumentationKey { get; }
+
+        public ITelemetryChannel TelemetryChannel { get; }
     }
 }

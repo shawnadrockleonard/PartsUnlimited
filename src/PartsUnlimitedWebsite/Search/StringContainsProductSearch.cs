@@ -22,10 +22,10 @@ namespace PartsUnlimited.Search
         {
             var lowercase_query = query.ToLower();
 
-            var q = _context.Products
-                .Where(p => p.Title.ToLower().Contains(lowercase_query));
+            var q = await _context.Products
+                .Where(p => p.Title.ToLower().Contains(lowercase_query)).ToListAsync().ConfigureAwait(false);
 
-            return await q.ToListAsync();
+            return q;
         }
     }
 }

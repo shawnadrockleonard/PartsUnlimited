@@ -6,7 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="3.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.9" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.9" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="3.1.9" />
@@ -30,12 +29,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="config.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 
 </Project>

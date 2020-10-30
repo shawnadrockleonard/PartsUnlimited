@@ -1,6 +1,6 @@
 ﻿namespace PartsUnlimited.Models
 {
-    public class AzureKeyValueEntity
+    public class ConfigAzureKeyValueEntity
     {
         public string Vault { get; set; }
 
