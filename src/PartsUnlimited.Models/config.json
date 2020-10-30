@@ -1,1 +1,16 @@
-﻿{}
+﻿{
+  "Keys": {
+    "ApplicationInsights": {
+      "EndpointAddress": "https://dc.applicationinsights.us/v2/track",
+      "InstrumentationKey": "118f391d-6ac3-f728-b5da-b9b1ed3cc5af"
+    }
+  },
+  "AzureKeyVault": {
+    "Vault": "https://cbx-cbxis5-kv.vault.usgovcloudapi.net/",
+    "ClientId": "",
+    "ClientSecret": ""
+  },
+  "ConnectionStrings": {
+    "DefaultConnectionString": "Server=tcp:cbx-cbxis5-db.database.usgovcloudapi.net,1433;Initial Catalog=dbl7o5xbbb7q3iu;Persist Security Info=False;User ID=x_admin;Password=!!!!890iop!!!!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+}

@@ -2,6 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+
 namespace PartsUnlimited.Models.Migrations
 {
     public partial class InitialMigration : Migration

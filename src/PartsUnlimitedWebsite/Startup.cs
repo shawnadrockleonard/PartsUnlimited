@@ -2,12 +2,15 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PartsUnlimited.Areas.Admin;
 using PartsUnlimited.Models;
+using PartsUnlimited.Models.Extensions;
 using PartsUnlimited.Queries;
 using PartsUnlimited.Recommendations;
 using PartsUnlimited.Search;
@@ -20,12 +23,34 @@ namespace PartsUnlimited
 {
     public class Startup
     {
+        private IWebHostEnvironment WebHostEnvironment { get; }
         public IConfiguration Configuration { get; }
         public IServiceCollection service { get; private set; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        private IConfiguration BuildConfiguration()
+        {
+            //Below code demonstrates usage of multiple configuration sources. For instance a setting say 'setting1' is found in both the registered sources, 
+            //then the later source will win. By this way a Local config can be overridden by a different setting while deployed remotely.
+            var builder = new ConfigurationBuilder()
+              .AddJsonFile("config.json")
+              .AddJsonFile($"config.{WebHostEnvironment?.EnvironmentName}.json", optional: true)
+              .AddEnvironmentVariables()
+              .AddAzureKeyVaultIfAvailable();
+
+            if (WebHostEnvironment.IsDevelopment())
+            {
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+                builder.AddUserSecrets("AdminRole");
+
+                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
+            return builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -40,6 +65,13 @@ namespace PartsUnlimited
             {
                 sqlConnectionString = "";
             }
+
+            services.AddTransient<IAppSettingEntity, AppSettingEntity>(config =>
+            {
+                var connection = Configuration.Get<AppSettingEntity>();
+                return connection;
+            });
+
 
             // Add EF services to the services container
             services.AddDbContext<PartsUnlimitedContext>();
@@ -93,7 +125,10 @@ namespace PartsUnlimited
             ContentDeliveryNetworkExtensions.Configuration = new ContentDeliveryNetworkConfiguration(Configuration.GetSection("CDN"));
 
             // Add MVC services to the services container
-            services.AddMvc();
+            services.AddMvc((setupAction) =>
+            {
+                setupAction.EnableEndpointRouting = false;
+            });
 
             //Add InMemoryCache
             services.AddSingleton<IMemoryCache, MemoryCache>();
@@ -164,6 +199,8 @@ namespace PartsUnlimited
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 
             // Add MVC to the request pipeline
+
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

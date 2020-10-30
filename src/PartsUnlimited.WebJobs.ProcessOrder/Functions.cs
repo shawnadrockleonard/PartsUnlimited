@@ -3,10 +3,10 @@
 
 using System;
 using System.Linq;
+using Microsoft.Azure.Storage.Queue;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PartsUnlimited.Models;
@@ -16,7 +16,7 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
     public class Functions
     {
         [NoAutomaticTrigger]
-        public static void CreateOrderProcessTask([Queue("orders")] CloudQueue orderQueue)
+        public static void CreateOrderProcessTask([QueueTrigger("orders")] CloudQueue orderQueue)
         {
             Console.WriteLine("Starting Create Order Process Task");
             try
