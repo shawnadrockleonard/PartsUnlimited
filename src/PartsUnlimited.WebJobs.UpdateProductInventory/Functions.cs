@@ -19,7 +19,7 @@ namespace PartsUnlimited.WebJobs.UpdateProductInventory
             var builder = new ConfigurationBuilder();
             builder.Add(new JsonConfigurationSource { Path = "config.json" });
             var config = builder.Build();
-            var connectionString = config["Data:DefaultConnection:ConnectionString"];
+            var connectionString = config["ConnectionStrings:DefaultConnectionString"];
 
             using (var context = new PartsUnlimitedContext(connectionString))
             {

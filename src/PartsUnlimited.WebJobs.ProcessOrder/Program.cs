@@ -76,8 +76,8 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
             services.AddSingleton(Configuration);
 
 
-            var webjobsConnectionString = Configuration["Data:AzureWebJobsStorage:ConnectionString"];
-            var dbConnectionString = Configuration["Data:DefaultConnection:ConnectionString"];
+            var webjobsConnectionString = Configuration["ConnectionStrings:AzureWebJobsStorage"];
+            var dbConnectionString = Configuration["ConnectionStrings:DefaultConnectionString"];
             if (string.IsNullOrWhiteSpace(webjobsConnectionString))
             {
                 MessageWrite("The configuration value for Azure Web Jobs Connection String is missing.");
