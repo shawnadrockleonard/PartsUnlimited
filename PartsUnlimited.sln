@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartsUnlimited.WebJobs.Proc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartsUnlimited.WebJobs.UpdateProductInventory", "src\PartsUnlimited.WebJobs.UpdateProductInventory\PartsUnlimited.WebJobs.UpdateProductInventory.csproj", "{55500A39-9A61-4C2A-86C9-67EE9A149034}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "batch", "batch", "{17F43348-7E49-44FF-942F-5983328A1A4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{8CAED1E8-520E-4BA0-AE81-F0DFC75B532B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD52204A-7129-4FF2-B66C-34A5E6F70CDD} = {8CAED1E8-520E-4BA0-AE81-F0DFC75B532B}
+		{3BF0E46E-D3D0-4C4D-A24A-A606F7F6EBD4} = {17F43348-7E49-44FF-942F-5983328A1A4D}
+		{55500A39-9A61-4C2A-86C9-67EE9A149034} = {17F43348-7E49-44FF-942F-5983328A1A4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D80E9FF-8E56-419C-BDFA-87AA27E032C5}

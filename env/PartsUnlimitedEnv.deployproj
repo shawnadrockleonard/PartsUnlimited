@@ -41,6 +41,18 @@
     </None>
     <Content Include="Templates\FullEnvironmentSetupMerged.json" />
     <Content Include="Templates\FullEnvironmentSetupMerged.param.json" />
+    <None Include="DevTestLabs\Artifacts\AUTHORING.md" />
+    <None Include="DevTestLabs\Artifacts\README.md" />
+    <None Include="DevTestLabs\Artifacts\windows-powershellcore\Artifactfile.json" />
+    <None Include="DevTestLabs\Artifacts\windows-powershellcore\Install-PowerShellCore.ps1" />
+    <None Include="DevTestLabs\Artifacts\windows-powershellcore\Powershell_black_64.png" />
+    <None Include="DevTestLabs\Environments\README.md" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\azuredeploy.json" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\azuredeploy.parameters.json" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\metadata.json" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\nestedtemplates\keyvault-secrets.json" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\nestedtemplates\webapp-akv-policies.json" />
+    <None Include="DevTestLabs\Environments\WebApp-Identity-KeyVault\Readme.md" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
