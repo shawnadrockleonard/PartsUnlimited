@@ -11,6 +11,6 @@
     "ClientSecret": ""
   },
   "ConnectionStrings": {
-    "DefaultConnectionString": "Server=tcp:cbx-cbxis5-db.database.usgovcloudapi.net,1433;Initial Catalog=dbl7o5xbbb7q3iu;Persist Security Info=False;User ID=x_admin;Password=!!!!890iop!!!!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "DefaultConnectionString": "overwrite"
   }
 }
