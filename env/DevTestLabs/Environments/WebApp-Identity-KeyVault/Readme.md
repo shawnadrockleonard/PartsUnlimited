@@ -22,15 +22,6 @@ This will enable enable managed identity with KeyVault policies.
 This will add KeyVault entries based on the supplied ARM Template parameters
 
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fshawnadrockleonard%2FPartsUnlimited%2Fshawns%2Fdotnet3upgrade%2Fenv%2FDevTestLabs%2FEnvironments%2FWebApp-Identity-KeyVault%2Fazuredeploy.json" target="_blank">
-    <img src="https://raw.githubusercontent.com/shawnadrockleonard/Azure/master/templates/metadata/deploytoazure.png"/> 
-</a>
+[![Deploy to Azure](https://raw.githubusercontent.com/shawnadrockleonard/Azure/master/templates/metadata/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fshawnadrockleonard%2FPartsUnlimited%2Fshawns%2Fdotnet3upgrade%2Fenv%2FDevTestLabs%2FEnvironments%2FWebApp-Identity-KeyVault%2Fazuredeploy.json)
 
-
-<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fshawnadrockleonard%2FPartsUnlimited%2Fshawns%2Fdotnet3upgrade%2Fenv%2FDevTestLabs%2FEnvironments%2FWebApp-Identity-KeyVault%2Fazuredeploy.json" target="_blank">
-<img src="https://raw.githubusercontent.com/shawnadrockleonard/Azure/master/templates/metadata/deploytoazuregov.png"/>
-</a>
-
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fshawnadrockleonard%2FPartsUnlimited%2Fshawns%2Fdotnet3upgrade%2Fenv%2FDevTestLabs%2FEnvironments%2FWebApp-Identity-KeyVault%2F2Fazuredeploy.json" target="_blank">
-    <img src="https://raw.githubusercontent.com/shawnadrockleonard/Azure/master/templates/metadata/visualizebutton.png"/> 
-</a>
+[![Deploy to Azure Government](https://raw.githubusercontent.com/shawnadrockleonard/Azure/master/templates/metadata/deploytoazuregov.png)](https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fshawnadrockleonard%2FPartsUnlimited%2Fshawns%2Fdotnet3upgrade%2Fenv%2FDevTestLabs%2FEnvironments%2FWebApp-Identity-KeyVault%2Fazuredeploy.json)
