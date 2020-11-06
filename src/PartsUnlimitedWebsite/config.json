@@ -35,10 +35,10 @@
   "ApplicationInsights": {
     "TelemetryChannel": {
     },
-    "InstrumentationKey": "ca008b57-b060-f7dc-bd41-99419ab7edfc"
+    "InstrumentationKey": ""
   },
   "AzureKeyVault": {
-    "Vault": "https://cbx-cbxis5-kv.vault.usgovcloudapi.net/",
+    "Vault": "",
     "ClientId": "",
     "ClientSecret": ""
   },

@@ -26,7 +26,7 @@ namespace PartsUnlimited
     {
         private IWebHostEnvironment WebHostEnvironment { get; }
         public IConfiguration Configuration { get; }
-        public IServiceCollection service { get; private set; }
+        public IServiceCollection ServiceCollection { get; private set; }
 
         public Startup(IWebHostEnvironment env)
         {
@@ -42,6 +42,7 @@ namespace PartsUnlimited
               .AddJsonFile("config.json")
               .AddJsonFile($"config.{WebHostEnvironment?.EnvironmentName}.json", optional: true)
               .AddEnvironmentVariables()
+              .AddUserSecrets(typeof(Startup).Assembly)
               .AddAzureKeyVaultIfAvailable();
 
             if (WebHostEnvironment.IsDevelopment())
@@ -57,7 +58,7 @@ namespace PartsUnlimited
 
         public void ConfigureServices(IServiceCollection services)
         {
-            service = services;
+            ServiceCollection = services;
             //If this type is present - we're on mono
             var runningOnMono = Type.GetType("Mono.Runtime") != null;
             var sqlConnectionString = Configuration[ConfigurationPath.Combine("ConnectionStrings", "DefaultConnectionString")];
@@ -100,7 +101,7 @@ namespace PartsUnlimited
             services.AddSingleton<IMemoryCache, MemoryCache>();
             services.AddScoped<IOrdersQuery, OrdersQuery>();
             services.AddScoped<IRaincheckQuery, RaincheckQuery>();
-
+            services.AddSingleton<IKeyVaultHelper, AzureKeyVaultHelper>();
             services.AddSingleton<ITelemetryProvider, EmptyTelemetryProvider>();
             services.AddScoped<IProductSearch, StringContainsProductSearch>();
 
@@ -198,7 +199,7 @@ namespace PartsUnlimited
             // Add cookie-based authentication to the request pipeline
             app.UseAuthentication();
 
-            AppBuilderLoginProviderExtensions.AddLoginProviders(service, new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
+            AppBuilderLoginProviderExtensions.AddLoginProviders(ServiceCollection, new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
             // Add login providers (Microsoft/AzureAD/Google/etc).  This must be done after `app.UseIdentity()`
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 

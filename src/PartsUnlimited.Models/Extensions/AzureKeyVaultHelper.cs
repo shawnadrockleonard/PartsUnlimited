@@ -35,7 +35,7 @@ namespace PartsUnlimited.Models.Extensions
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Trace.TraceError($"GetSecretAsync exception {ex.Message} with Stack {ex.StackTrace}");
                 return null;
             }
         }
@@ -49,6 +49,7 @@ namespace PartsUnlimited.Models.Extensions
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.TraceError($"SetSecretAsync exception {ex.Message} with Stack {ex.StackTrace}");
             }
         }
 
