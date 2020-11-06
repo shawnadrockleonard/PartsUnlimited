@@ -40,7 +40,7 @@ namespace PartsUnlimited
             //then the later source will win. By this way a Local config can be overridden by a different setting while deployed remotely.
             var builder = new ConfigurationBuilder()
               .AddJsonFile("config.json")
-              .AddJsonFile($"config.{WebHostEnvironment?.EnvironmentName}.json", optional: true)
+              .AddJsonFile($"config.{WebHostEnvironment?.EnvironmentName}.json", optional: true, reloadOnChange: true)
               .AddEnvironmentVariables()
               .AddUserSecrets(typeof(Startup).Assembly)
               .AddAzureKeyVaultIfAvailable();

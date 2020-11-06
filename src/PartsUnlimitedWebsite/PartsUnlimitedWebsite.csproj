@@ -40,4 +40,6 @@
 		<Exec Command="grunt" />
 	</Target>
 
+	<ProjectExtensions><VisualStudio><UserProperties NpmRestoreOnProjectOpen="True" /></VisualStudio></ProjectExtensions>
+
 </Project>
